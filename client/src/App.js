@@ -1,5 +1,6 @@
 import Home from './Components/home';
 import ClientList from "./Components/clientList";
+import AboutUs from './Components/aboutUs';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -7,7 +8,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
-
 
 import "./App.css";
 
@@ -22,6 +22,7 @@ function App() {
             <Navbar.Brand className="nav-link-custom" href="/home">Client Manager</Navbar.Brand>
             <Nav className="me-auto">
               {/* Navigation links */}
+              <Nav.Link className="nav-link-custom" href="/aboutUs">About Us</Nav.Link>
               <Nav.Link className="nav-link-custom" href="/clientList">Client List</Nav.Link>
             
             </Nav>
@@ -35,6 +36,8 @@ function App() {
           {/* Route for the home page (alternative path) */}
           <Route path='/clientList' element={<ClientList></ClientList>}></Route>
           {/* Route for listing tasks */}
+          {/* Route for the About Us page */}
+          <Route path='/aboutUs' element={<AboutUs></AboutUs>}></Route>
 
         </Routes>
        

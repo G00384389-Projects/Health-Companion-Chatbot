@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  padding-bottom: 50px; /* bottom padding to accommodate the footer */
+  position: relative; /* Needed for footer positioning */
+  
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh; /* Ensure the div takes up at least the height of the viewport */
 }
 
 .App-logo {
@@ -13,8 +20,91 @@
   }
 }
 
+.navbar-custom {
+  background-color: #343a40; 
+}
+
+.nav-link-custom {
+  color: #ffffff !important; /* White text color for better contrast */
+}
+
+/* Styles for the edit task container and form */
+.edit-task-container {
+  margin-top: 20px;
+}
+
+.edit-task-form .form-group {
+  margin: auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  width: 50%; 
+}
+
+
+.submit-edit {
+  margin-bottom: 20px; /* Space between form groups */
+}
+
+/* Styles for creating a task */
+.create-task-container {
+  margin-top: 20px;
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 20px;
+}
+
+.task-form .form-group {
+  margin-bottom: 10px;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.submit-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Styles for displaying news articles */
+.news-container {
+  background-color: #f2f2f2; /* Light gray background */
+  padding: 20px;
+  margin: auto;
+  max-width: 80%;
+}
+
+.news-article {
+  background-color: #ffffff; /* White background for articles */
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px; /* Rounded corners for articles */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  overflow: hidden; /* Keep everything inside the border */
+}
+
+.news-article img {
+  max-width: 100%; /* Image never larger than the container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Removes bottom space under the image */
+  margin: 0 auto; /* Center the image */
+  border-radius: 5px; /* Rounded corners for the image */
+}
+
+/* footer.css */
+.footer {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 .App-header {
-  background-color: #282c34;
+  background-color: #343a40;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +115,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #343a40;
 }
 
 @keyframes App-logo-spin {
