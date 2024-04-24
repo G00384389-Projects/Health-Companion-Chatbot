@@ -8,6 +8,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 from config import *
+from config import OPENAI_API_KEY
 
 app = Flask(__name__)
 CORS(app)
@@ -49,9 +50,8 @@ def delete_todo_item():
 
 @app.route('/stream_response')
 def stream_response():
-    def generate():
-        #client = openai.OpenAI(api_key='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')
-        client = openai.OpenAI(api_key=OPENAI_API_KEY)
+    def generate():        
+        client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
         stream = client.chat.completions.create(
             model="gpt-4",
             messages=[{"role": "user", "content": "This is a test"}],

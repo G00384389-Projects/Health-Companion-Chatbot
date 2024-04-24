@@ -8,7 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
-
+import StreamComponent from './Components/chatbot';
 import "./App.css";
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
             </Nav>
           </Container>
         </Navbar>
-
+          <StreamComponent></StreamComponent>>
         {/* Routes setup for different pages in the application */}
         <Routes>
           {/* Route for the home page */}
