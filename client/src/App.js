@@ -1,6 +1,7 @@
 import Home from './Components/home';
-import ClientList from "./Components/clientList";
+import MoodChecker from "./Components/moodChecker";
 import AboutUs from './Components/AboutUs';
+import NewsList from './Components/newsList';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -19,12 +20,12 @@ function App() {
         {/* Navbar setup using react-bootstrap components */}
         <Navbar className='navbar-custom'>
           <Container>
-            <Navbar.Brand className="nav-link-custom" href="/home">Client Manager</Navbar.Brand>
+            <Navbar.Brand className="nav-link-custom" href="/home">AI Wellness Companion</Navbar.Brand>
             <Nav className="me-auto">
               {/* Navigation links */}
+              <Nav.Link className="nav-link-custom" href="/moodChecker">Mood Checker</Nav.Link>
               <Nav.Link className="nav-link-custom" href="/aboutUs">About Us</Nav.Link>
-              <Nav.Link className="nav-link-custom" href="/clientList">Client List</Nav.Link>
-            
+              <Nav.Link className="nav-link-custom" href="/newsList">News LIst</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -34,10 +35,11 @@ function App() {
           {/* Route for the home page */}
           <Route path='/home' element={<Home />}></Route>
           {/* Route for the home page (alternative path) */}
-          <Route path='/clientList' element={<ClientList></ClientList>}></Route>
+          <Route path='/moodChecker' element={<MoodChecker></MoodChecker>}></Route>
           {/* Route for listing tasks */}
           {/* Route for the About Us page */}
           <Route path='/aboutUs' element={<AboutUs></AboutUs>}></Route>
+          <Route path='/newsList' element={<NewsList></NewsList>}></Route>
 
         </Routes>
        
@@ -47,13 +49,3 @@ function App() {
 }
 
 export default App;
-
-/*return (
-    <div className="App">
-        
-
-        
-        <Home></Home>
-        <ClientList></ClientList>
-
-    </div>*/
