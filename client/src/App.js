@@ -1,6 +1,6 @@
 import Home from './Components/home';
 import ClientList from "./Components/clientList";
-import AboutUs from './Components/aboutUs';
+import AboutUs from './Components/AboutUs';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
