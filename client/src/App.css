@@ -1,98 +1,149 @@
-.App {
-  text-align: center;
-  padding-bottom: 50px; /* bottom padding to accommodate the footer */
-  position: relative; /* Needed for footer positioning */
-  
+/* Global resets and general styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Arial', sans-serif;
+  background: url('background.jpg') no-repeat center center fixed; 
   background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  min-height: 100vh; /* Ensure the div takes up at least the height of the viewport */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
+/* Navbar and header styles */
 .navbar-custom {
-  background-color: #343a40; 
+  background-color: #343a40;
 }
 
 .nav-link-custom {
-  color: #ffffff !important; /* White text color for better contrast */
+  color: #ffffff !important;
 }
 
-/* Styles for the edit task container and form */
-.edit-task-container {
-  margin-top: 20px;
+.App-header {
+  background-color: #343a40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
-.edit-task-form .form-group {
-  margin: auto;
-  padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 8px;
-  width: 50%; 
-}
-
-
-.submit-edit {
-  margin-bottom: 20px; /* Space between form groups */
-}
-
-/* Styles for creating a task */
-.create-task-container {
-  margin-top: 20px;
-  width: 50%;
-  margin: auto;
-  padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 20px;
-}
-
-.task-form .form-group {
-  margin-bottom: 10px;
-  border: 1px solid black;
-  padding: 10px;
-}
-
-.submit-button-container {
+/* Main app container */
+.App {
   text-align: center;
-  margin-top: 20px;
+  padding-bottom: 50px; /* Adjust or remove padding as needed */
+  position: relative;
 }
 
-/* Styles for displaying news articles */
-.news-container {
-  background-color: #f2f2f2; /* Light gray background */
+/* Task list styles */
+.todo-app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0; /* Add top and bottom padding as needed */
+}
+
+.todo-list-container {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.95);
   padding: 20px;
-  margin: auto;
-  max-width: 80%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.news-article {
-  background-color: #ffffff; /* White background for articles */
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 5px; /* Rounded corners for articles */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  overflow: hidden; /* Keep everything inside the border */
+.todo-list {
+  list-style: none;
 }
 
-.news-article img {
-  max-width: 100%; /* Image never larger than the container */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Removes bottom space under the image */
-  margin: 0 auto; /* Center the image */
-  border-radius: 5px; /* Rounded corners for the image */
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
-/* footer.css */
+.delete-button {
+  padding: 6px 12px;
+  background-color: #ff6347;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+/* This is the container for the entire todo list section */
+.todo-list-container {
+  width: 90%;
+  max-width: 600px;
+  margin: auto; /* This centers the container */
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center; /* This will center the text of direct child elements */
+}
+
+/* Styles for the todo list itself */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styles for each individual todo item */
+.todo-item {
+  display: flex;
+  justify-content: space-between; /* This will position the span and button on opposite ends */
+  align-items: center;
+  margin-bottom: 10px; /* Adds a little space between items */
+}
+
+/* The span for the todo item content will take up the remaining space */
+.todo-item span {
+  text-align: left; /* Aligns the text to the left */
+  flex-grow: 1; /* This will make sure the span fills the space left by the button */
+}
+
+/* Styles for the delete button */
+.delete-button {
+  padding: 6px 12px;
+  background-color: #ff6347;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #e55335;
+}
+
+/* Style for the message when there are no tasks */
+.no-tasks {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+}
+
+
+.delete-button:hover {
+  background-color: #e55335;
+}
+
+.no-tasks {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+}
+
+/* Footer styles */
 .footer {
   background-color: #343a40;
   color: white;
@@ -103,26 +154,5 @@
   width: 100%;
 }
 
-.App-header {
-  background-color: #343a40;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/* Remove any other conflicting or redundant CSS rules */
 
-.App-link {
-  color: #343a40;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
