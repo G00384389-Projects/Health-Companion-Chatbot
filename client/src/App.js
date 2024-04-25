@@ -2,6 +2,7 @@ import Home from './Components/home';
 import MoodChecker from "./Components/moodChecker";
 import AboutUs from './Components/AboutUs';
 import NewsList from './Components/newsList';
+import ChatBot from './Components/chatBot';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -26,6 +27,7 @@ function App() {
               <Nav.Link className="nav-link-custom" href="/moodChecker">Mood Checker</Nav.Link>
               <Nav.Link className="nav-link-custom" href="/aboutUs">About Us</Nav.Link>
               <Nav.Link className="nav-link-custom" href="/newsList">News LIst</Nav.Link>
+              <Nav.Link className="nav-link-custom" href="/chatBot">ChatBot</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -40,7 +42,7 @@ function App() {
           {/* Route for the About Us page */}
           <Route path='/aboutUs' element={<AboutUs></AboutUs>}></Route>
           <Route path='/newsList' element={<NewsList></NewsList>}></Route>
-
+          <Route path='/chatBot' element={<ChatBot></ChatBot>}></Route>
         </Routes>
        
       </div>
