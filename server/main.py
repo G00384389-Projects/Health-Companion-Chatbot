@@ -54,11 +54,19 @@ from config import OPENAI_API_KEY  # Import the API key from config.py
 
 app = Flask(__name__)
 
+from flask import Flask, request, Response
+from flask_cors import CORS
+import openai
+
+app = Flask(__name__)
+
+# Allow CORS for all domains on all routes
+CORS(app)
 
 @app.route('/chat', methods=['GET'])
 def chat():
     user_message = request.args.get('message', 'Hello')
-    print(f"Received message: {user_message}")  # Debug print
+    print(f"Received message: {user_message}")
 
     def generate():
         client = openai.OpenAI(api_key=OPENAI_API_KEY)
@@ -71,10 +79,36 @@ def chat():
         for chunk in stream:
             if chunk.choices[0].delta.content:
                 response = f"data: {chunk.choices[0].delta.content}\n\n"
-                print(f"Sending: {response}")  # Debug print
+                print(f"Sending: {response}")
                 yield response
 
     return Response(generate(), mimetype="text/event-stream")
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+# @app.route('/chat', methods=['GET'])
+# def chat():
+#     user_message = request.args.get('message', 'Hello')
+#     print(f"Received message: {user_message}")  # Debug print
+
+#     def generate():
+#         client = openai.OpenAI(api_key=OPENAI_API_KEY)
+#         stream = client.chat.completions.create(
+#             model="gpt-4",
+#             messages=[{"role": "user", "content": user_message}],
+#             stream=True
+#         )
+        
+#         for chunk in stream:
+#             if chunk.choices[0].delta.content:
+#                 response = f"data: {chunk.choices[0].delta.content}\n\n"
+#                 print(f"Sending: {response}")  # Debug print
+#                 yield response
+
+#     return Response(generate(), mimetype="text/event-stream")
 
 # @app.route('/chat', methods=['GET'])
 # def chat():

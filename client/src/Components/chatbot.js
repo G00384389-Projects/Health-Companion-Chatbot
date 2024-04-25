@@ -30,25 +30,44 @@ function ChatBox() {
   //   setUserMessage('');  // Clear input after sending
   // };
 
+  //   const sendMessage = () => {
+  //     const query = new URLSearchParams({ message: userMessage }).toString();
+  //     const url = `http://localhost:5000/chat?${query}`;
+  //     const eventSource = new EventSource(url);
+
+  //     eventSource.onmessage = function(event) {
+  //         console.log('New message from API:', event.data);
+  //         setMessages(prevMessages => [...prevMessages, { role: 'bot', content: event.data.trim() }]);
+  //     };
+
+  //     eventSource.onerror = function(error) {
+  //         console.error('EventSource encountered an error:', error);
+  //         eventSource.close();
+  //         setMessages(prevMessages => [...prevMessages, { role: 'bot', content: "Error in connection. Please try again." }]);
+  //     };
+
+  //     setUserMessage('');
+  // };
+
   const sendMessage = () => {
     const query = new URLSearchParams({ message: userMessage }).toString();
     const url = `http://localhost:5000/chat?${query}`;
     const eventSource = new EventSource(url);
 
-    eventSource.onmessage = function(event) {
-        console.log('New message from API:', event.data);
-        setMessages(prevMessages => [...prevMessages, { role: 'bot', content: event.data.trim() }]);
+    eventSource.onmessage = function (event) {
+      console.log('New message from API:', event.data);
+      const newData = event.data.slice(5).trim(); // Assuming data comes as "data: <message>\n\n"
+      setMessages(prevMessages => [...prevMessages, { role: 'bot', content: newData }]);
     };
 
-    eventSource.onerror = function(error) {
-        console.error('EventSource encountered an error:', error);
-        eventSource.close();
-        setMessages(prevMessages => [...prevMessages, { role: 'bot', content: "Error in connection. Please try again." }]);
+    eventSource.onerror = function (error) {
+      console.error('EventSource encountered an error:', error);
+      eventSource.close();
+      setMessages(prevMessages => [...prevMessages, { role: 'bot', content: "Failed to connect. Please refresh." }]);
     };
 
-    setUserMessage('');
-};
-
+    setUserMessage('');  // Clear input after sending
+  };
 
 
 
