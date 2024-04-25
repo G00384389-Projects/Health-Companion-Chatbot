@@ -1,15 +1,21 @@
-// Import React and the CSS file for styling
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-// Define the AboutUs component
 function ChatBot() {
-  // JSX returned by the component
+  const [assistantOutput, setAssistantOutput] = useState('');
+
+  useEffect(() => {
+    fetch('/run_assistant')
+      .then(response => response.text())
+      .then(data => {
+        setAssistantOutput(data);
+      });
+  }, []);
+
   return (
-          <div className="info-text">
-            <h1>ChatBot</h1>
-          </div>
-       
-      
+    <div className="chat-bot">
+      <h1>ChatBot</h1>
+      <p>{assistantOutput}</p>
+    </div>
   );
 }
 

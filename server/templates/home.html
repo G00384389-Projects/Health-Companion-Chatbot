@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Interaction</title>
+    <script>
+        async function handleSubmit(event) {
+            event.preventDefault();
+
+            const message = document.getElementById('message').value;
+            const response = await fetch('/assistant', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({message: message}),
+            });
+
+            const responseData = await response.json(); 
+
+            if (responseData.assistant_response) {
+                document.getElementById('response').textContent = responseData.assistant_response;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form id="messageForm" onsubmit="handleSubmit(event)">
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Send</button>
+    </form>
+    <div id="response"></div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!-- <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script> -->
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js" type="text/javascript">
+    
+    var socket = io(); // Connects to the server hosted at the same URL
+
+    document.getElementById('chat').onsubmit = function(e) {
+        e.preventDefault();
+        var input = document.getElementById('input');
+        var message = input.value;
+
+        // Fetch API call
+        fetch('/hail_mary', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({message: message})
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            var item = document.createElement('li');
+            item.textContent = data; // Display received message
+            document.getElementById('messages').appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        input.value = '';
+        return false;
+    };
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple ChatBot</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #messages { list-style-type: none; margin: 0; padding: 0; }
+        #messages li { padding: 8px; margin-bottom: 2px; background-color: #f3f3f3; }
+        #chat { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Chat with Bot</h1>
+    <ul id="messages"></ul>
+    <form id="chat" action="">
+        <input id="input" autocomplete="off"><button>Send</button>
+    </form>
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script type="text/javascript">
+        var socket = io(); // Connects to the server hosted at the same URL
+
+        document.getElementById('chat').onsubmit = function(e) {
+            e.preventDefault();
+            var input = document.getElementById('input');
+            var message = input.value;
+            socket.emit('message', message);  // Sending message to server via WebSocket
+            input.value = '';
+            return false;
+        };
+
+        socket.on('from_server', function(data) {
+            var item = document.createElement('li');
+            item.textContent = data.data; // Display received message
+            document.getElementById('messages').appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+    </script>
+</body>
+</html>
