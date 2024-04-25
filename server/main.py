@@ -3,7 +3,7 @@ import time
 import os
 from flask import Flask, request, jsonify, Response, render_template
 from flask_cors import CORS
-
+import subprocess
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
@@ -47,6 +47,25 @@ def delete_todo_item():
     return {}
 
 
+
+
+#attempt to call script to react
+app = Flask(__name__)
+
+@app.route('/callassistant')
+def run_script():
+    try:
+        # Assuming 'script.py' is in the same directory as your Flask app
+        result = subprocess.run(['python', 'test.py'], capture_output=True, text=True)
+        if result.returncode == 0:
+            return jsonify({'output': result.stdout}), 200
+        else:
+            return jsonify({'error': result.stderr}), 500
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 #Call Assistant.py

@@ -1,20 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 function ChatBot() {
-  const [assistantOutput, setAssistantOutput] = useState('');
+  const [output, setOutput] = useState('');
 
-  useEffect(() => {
-    fetch('/run_assistant')
-      .then(response => response.text())
+  const runPythonScript = () => {
+    fetch('/callassistant')
+      .then(response => response.json())
       .then(data => {
-        setAssistantOutput(data);
+        if (data.error) {
+          setOutput('Error: ' + data.error);
+        } else {
+          setOutput(data.output);
+        }
+      })
+      .catch(error => {
+        setOutput('Network error: ' + error.toString());
       });
-  }, []);
+  };
 
   return (
-    <div className="chat-bot">
-      <h1>ChatBot</h1>
-      <p>{assistantOutput}</p>
+    <div>
+      updated
+      <button onClick={runPythonScript}>Run Python Script</button>
+      <pre>{output}</pre>
     </div>
   );
 }
