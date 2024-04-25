@@ -7,7 +7,7 @@ from config import OPENAI_API_KEY
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 assistant = client.beta.assistants.create(
-  name="Math Tutor",
+  name="Medical companion",
   instructions="You are a medical advisor. Please give medical advice .",
 #   tools=[{"type": "code_interpreter"}],
   model="gpt-4-turbo",
