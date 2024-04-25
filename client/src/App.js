@@ -9,13 +9,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
-
+import StreamComponent from './Components/chatbot';
 import "./App.css";
 
 function App() {
-   
-    return (
-        <BrowserRouter>
+
+  return (
+    <BrowserRouter>
       <div className="App" >
         {/* Navbar setup using react-bootstrap components */}
         <Navbar className='navbar-custom'>
@@ -30,6 +30,10 @@ function App() {
           </Container>
         </Navbar>
 
+        <div style={{ background: 'green' }}>
+          <StreamComponent></StreamComponent>
+        </div>
+
         {/* Routes setup for different pages in the application */}
         <Routes>
           {/* Route for the home page */}
@@ -42,10 +46,10 @@ function App() {
           <Route path='/newsList' element={<NewsList></NewsList>}></Route>
 
         </Routes>
-       
+
       </div>
     </BrowserRouter>
-    );
+  );
 }
 
 export default App;

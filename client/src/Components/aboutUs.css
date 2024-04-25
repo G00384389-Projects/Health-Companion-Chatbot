@@ -96,3 +96,26 @@
 .info-card p {
   color: #495057;
 }
+
+.messages {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.user {
+  text-align: right;
+  color: blue;
+}
+
+.bot {
+  text-align: left;
+  color: green;
+}
+
+input, button {
+  margin-top: 10px;
+}
+

@@ -8,6 +8,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 from config import *
+from config import OPENAI_API_KEY
 
 app = Flask(__name__)
 CORS(app)
@@ -47,25 +48,163 @@ def delete_todo_item():
 
 # OpenAI API
 
-@app.route('/stream_response')
-def stream_response():
+from flask import Flask, request, Response
+import openai
+from config import OPENAI_API_KEY  # Import the API key from config.py
+
+app = Flask(__name__)
+
+from flask import Flask, request, Response
+from flask_cors import CORS
+import openai
+
+app = Flask(__name__)
+
+# Allow CORS for all domains on all routes
+CORS(app)
+
+@app.route('/chat', methods=['GET'])
+def chat():
+    user_message = request.args.get('message', 'Hello')
+    print(f"Received message: {user_message}")
+
     def generate():
-        #client = openai.OpenAI(api_key='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')
         client = openai.OpenAI(api_key=OPENAI_API_KEY)
         stream = client.chat.completions.create(
             model="gpt-4",
-            messages=[{"role": "user", "content": "This is a test"}],
+            messages=[{"role": "user", "content": user_message}],
             stream=True
         )
         
         for chunk in stream:
             if chunk.choices[0].delta.content:
-                yield chunk.choices[0].delta.content
+                response = f"data: {chunk.choices[0].delta.content}\n\n"
+                print(f"Sending: {response}")
+                yield response
 
-    return Response(generate(), mimetype="text/plain")
+    return Response(generate(), mimetype="text/event-stream")
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)
+
+
+
+# @app.route('/chat', methods=['GET'])
+# def chat():
+#     user_message = request.args.get('message', 'Hello')
+#     print(f"Received message: {user_message}")  # Debug print
+
+#     def generate():
+#         client = openai.OpenAI(api_key=OPENAI_API_KEY)
+#         stream = client.chat.completions.create(
+#             model="gpt-4",
+#             messages=[{"role": "user", "content": user_message}],
+#             stream=True
+#         )
+        
+#         for chunk in stream:
+#             if chunk.choices[0].delta.content:
+#                 response = f"data: {chunk.choices[0].delta.content}\n\n"
+#                 print(f"Sending: {response}")  # Debug print
+#                 yield response
+
+#     return Response(generate(), mimetype="text/event-stream")
+
+# @app.route('/chat', methods=['GET'])
+# def chat():
+#     user_message = request.args.get('message', 'Hello')
+#     print(f"Received message: {user_message}")  # Debug print
+
+#     def generate():
+#         client = openai.OpenAI(api_key=OPENAI_API_KEY)
+#         stream = client.chat.completions.create(
+#             model="gpt-4",
+#             messages=[{"role": "user", "content": user_message}],
+#             stream=True
+#         )
+        
+#         for chunk in stream:
+#             if chunk.choices[0].delta.content:
+#                 response = f"data: {chunk.choices[0].delta.content}\n\n"
+#                 print(f"Sending: {response}")  # Debug print
+#                 yield response
+
+#     return Response(generate(), mimetype="text/event-stream")
+
+# if __name__ == "__main__":
+#     app.run(debug=True)
+
+
+
+
+
+
+
+# not returning response n app
+# @app.route('/chat', methods=['GET'])
+# def chat():
+#     user_message = request.args.get('message', 'Hello')  # Default message if none provided
+#     print(f"Received message: {user_message}")  # Debug print
+
+#     def generate():
+#         client = openai.OpenAI(api_key=OPENAI_API_KEY)
+#         stream = client.chat.completions.create(
+#             model="gpt-4",
+#             messages=[{"role": "user", "content": user_message}],
+#             stream=True
+#         )
+        
+#         for chunk in stream:
+#             if chunk.choices[0].delta.content:
+#                 # yield f"data: {chunk.choices[0].delta.content}\n\n"
+#                 response = f"data: {chunk.choices[0].delta.content}\n\n"
+#                 print(f"Sending: {response}")  # Debug print
+#                 yield response
+
+#     return Response(generate(), mimetype="text/event-stream")
+
+
+# returning 405
+# @app.route('/chat', methods=['POST'])
+# def chat():
+#     user_message = request.json['message']
+
+#     def generate():
+#         client = openai.OpenAI(api_key=OPENAI_API_KEY)
+#         stream = client.chat.completions.create(
+#             model="gpt-4",
+#             messages=[{"role": "user", "content": user_message}],
+#             stream=True
+#         )
+        
+#         for chunk in stream:
+#             if chunk.choices[0].delta.content:
+#                 yield f"data: {chunk.choices[0].delta.content}\n\n"
+
+#     return Response(generate(), mimetype="text/event-stream")
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
+# this stream responsess works
+# @app.route('/stream_response')
+# def stream_response():
+#     def generate():        
+#         client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+#         stream = client.chat.completions.create(
+#             model="gpt-4",
+#             messages=[{"role": "user", "content": "This is a test"}],
+#             stream=True
+#         )
+        
+#         for chunk in stream:
+#             if chunk.choices[0].delta.content:
+#                 yield chunk.choices[0].delta.content
+
+#     return Response(generate(), mimetype="text/plain")
+
+# if __name__ == '__main__':
+#     app.run(debug=True) 
 
 # @app.route('/medical_advice', methods=['POST'])
 # def medical_advice():
