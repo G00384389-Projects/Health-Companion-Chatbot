@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './aboutUs.css';
+
 
 // The NewsList component fetches and displays a list of news articles
 const NewsList = () => {
@@ -19,7 +21,7 @@ const NewsList = () => {
       // Query parameters for the API call
       const queryParams = {
         q: 'Apple', // Query term
-        from: '2024-04-23', // Start date for the news articles
+        from: '2024-04-24', // Start date for the news articles
         sortBy: 'popularity', // Sorting parameter
         apiKey: API_KEY // API key parameter
       };
@@ -48,19 +50,17 @@ const NewsList = () => {
     <div className="news-container">
       <h1>World News</h1> 
       {articles.map((article, index) => (
-        // Map over the articles array to render each article
         <div key={index} className="news-article">
           <h2>{article.title}</h2> 
           <p>{article.author}</p> 
           <p>{article.description}</p> 
-          {/* Render the article image if the URL is available */}
           {article.urlToImage && <img src={article.urlToImage} alt={article.title} />}
-          {/* link to read the full article */}
           <p><a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a></p>
         </div>
       ))}
     </div>
   );
+
 };
 
 export default NewsList;

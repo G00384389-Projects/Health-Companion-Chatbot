@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 
 function Home() {
 
@@ -34,10 +32,10 @@ function Home() {
                     <div className="col-md-4 mb-5">
                         <div className="card h-100">
                             <div className="card-body">
-                                <h2 className="card-title">What we have to offer</h2>
+                                <h2 className="card-title">Talk to our AI Companion</h2>
                                 <p className="card-text">See our store.</p>
                             </div>
-                            <div className="card-footer"><a className="btn btn-primary btn-sm" href="shopproducts">Browse</a></div>
+                            <div className="card-footer"><a className="btn btn-primary btn-sm" href="/chatBot">Browse</a></div>
                         </div>
                     </div>
                     {/* About Us Card */}
@@ -47,17 +45,17 @@ function Home() {
                                 <h2 className="card-title">About Us</h2>
                                 <p className="card-text">To learn more about us!</p>
                             </div>
-                            <div className="card-footer"><a className="btn btn-primary btn-sm" href="/aboutUS">More Info</a></div>
+                            <div className="card-footer"><a className="btn btn-primary btn-sm" href="/aboutUS">Click here</a></div>
                         </div>
                     </div>
                     {/* Login Card */}
                     <div className="col-md-4 mb-5">
                         <div className="card h-100">
                             <div className="card-body">
-                                <h2 className="card-title">Happy</h2>
-                                <p className="card-text">Be Happy</p>
+                                <h2 className="card-title">Mood Checker</h2>
+                                <p className="card-text">Log your mood every day</p>
                             </div>
-                            <div className="card-footer"><a className="btn btn-primary btn-sm" href="/">Click here </a></div>
+                            <div className="card-footer"><a className="btn btn-primary btn-sm" href="/moodChecker">Click here </a></div>
                         </div>
                     </div>
                     {/* API Card - Full Width */}
@@ -65,10 +63,10 @@ function Home() {
                         <div className="card h-100">
                             <div >
                                 <div className="card-body">
-                                    <h2 className="card-title">API</h2>
+                                    <h2 className="card-title">Daily News</h2>
                                     <p className="card-text"></p>
                                 </div>
-                                <div className="card-footer"><a className="btn btn-primary btn-sm" href="/">Click here </a></div>
+                                <div className="card-footer"><a className="btn btn-primary btn-sm" href="/newsList">Click here</a></div>
                             </div>
                         </div>
                     </div>

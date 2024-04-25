@@ -39,6 +39,42 @@
   border: 3px solid black;
 }
 
+.news-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.news-article {
+  background-color: rgba(128, 128, 128, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+  margin-bottom: 10px;
+  overflow: hidden; /* In case of long non-breaking text */
+}
+
+.news-article h2 {
+  margin-top: 0;
+}
+
+.news-article img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 5px;
+  margin-top: 10px; /* Add space above the image */
+}
+
+.news-article a {
+  color: #ffd700;
+  text-decoration: none; /* Optional: removes underline from links */
+}
+
+.news-article a:hover,
+.news-article a:focus {
+  text-decoration: underline; /* Optional: adds underline on hover/focus for links */
+}
+
+
 /* Styles for the task card header */
 .task-card-header {
   background-color: lightgray;

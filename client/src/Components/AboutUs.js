@@ -13,11 +13,11 @@ function AboutUs() {
         <div className="info-card">
        
           <div className="info-text">
-            <h3>Welcome to Task Manager</h3>
+            <h3>Welcome to your AI Wellness Companion</h3>
             <p>
-              Your go-to application for managing your tasks efficiently. Whether you're organizing your day,
-              planning projects, or simply keeping track of your to-do list, Task Manager is here to help you stay
-              organized and productive.
+            Your innovative companion on the journey to better health and well-being. Developed with cutting-edge 
+            OpenAI technology, our chatbot is designed to assist you in self-diagnosing common health issues and 
+            tracking your daily mood, supporting you to lead a healthier and more mindful life.
             </p>
           </div>
         </div>
@@ -28,8 +28,9 @@ function AboutUs() {
           <div className="info-text">
             <h3>Our Mission</h3>
             <p>
-              Our mission is to provide a simple and intuitive task management solution for individuals and teams.
-              Feel free to explore the features and make the most out of your productivity with Task Manager.
+            Our mission is simple: to empower you with accessible, immediate, and personalized health insights. 
+            We believe that by understanding your own health and mood patterns, you can make more informed decisions 
+            about your lifestyle and well-being.
             </p>
           </div>
         </div>

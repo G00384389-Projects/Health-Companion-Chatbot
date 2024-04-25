@@ -5,6 +5,27 @@
   box-sizing: border-box;
 }
 
+.navbar-custom {
+  padding: 1rem 1rem; /* Increase the padding to make the navbar taller */
+}
+
+.navbar-custom .navbar-brand {
+  font-size: 1.9rem; /* Increase the size of the brand font */
+  margin-right: 30rem; /* Adjust this value as needed */
+}
+
+.navbar-custom .nav-link {
+  font-size: 1.2rem; /* Increase the size of the nav link text */
+  padding: 0.5rem 1rem; /* Increase the padding to make the links taller */
+}
+
+/* If you are using a logo image within the navbar brand */
+.navbar-custom .navbar-brand img {
+  height: auto; /* Height will scale with width */
+  width: 100px; /* Adjust width as necessary */
+}
+
+
 html, body {
   height: 100%;
   min-height: 100vh;
